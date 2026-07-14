@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiore Boutique | Elegant Responsive Flower Shop</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS Link -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- App Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- App Cart Sidebar Overlay & Panel -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>My Shopping Cart</h3>
+            <i class="fas fa-times" id="closeCart"></i>
+        </div>
+        <div class="cart-items" id="cartItemsList">
+            <!-- Items injected by JS -->
+            <div class="empty-cart-msg">Your cart is currently empty.</div>
+        </div>
+        <div class="cart-footer">
+            <div class="total-price-row">
+                <span>Total:</span>
+                <span id="cartTotalVal">$0.00</span>
+            </div>
+        <button type="button" class="btn checkout-btn" id="checkoutBtn">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- 1. Navigation Header -->
+    <header class="site-header">
+        <input type="checkbox" id="toggler">
+        <label for="toggler" class="fas fa-bars mobile-toggle-btn"></label>
+
+        <a href="#" class="logo">Fiore<span>.</span></a>
+
+        <nav class="navbar">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#products">Products</a>
+            <a href="#reviews">Review</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="search-bar-container">
+            <input type="text" id="productSearchInput" placeholder="Search flowers...">
+            <i class="fas fa-search"></i>
+        </div>
+
+        <div class="icons">
+            <a href="#" class="fas fa-heart" id="wishlistIconBtn" aria-label="Wishlist">
+                <span class="badge" id="wishlistBadge">0</span>
+            </a>
+            <a href="#" class="fas fa-shopping-cart" id="cartIconBtn" aria-label="Cart">
+                <span class="badge" id="cartBadge">0</span>
+            </a>
+            <a href="#" class="fas fa-user" id="userIconBtn" aria-label="User Profile"></a>
+        </div>
+    </header>
+
+    <!-- 2. Home Hero Banner -->
+    <section class="home" id="home">
+        <div class="content">
+            <h3>Fresh Flowers</h3>
+            <span>Natural &amp; Beautiful Flowers</span>
+            <p>Bring the raw elegance of handpicked seasonal blooms directly into your living spaces or surprise someone
+                special with our crafted boutique arrangements.</p>
+            <a href="#products" class="btn">Shop Now</a>
+        </div>
+    </section>
+
+    <!-- 3. About Section & Features Grid -->
+    <section class="about" id="about">
+        <h2 class="heading"><span>About</span> Us</h2>
+
+        <div class="row">
+            <div class="video-container">
+                <video id="about-video"
+                    src="https://assets.mixkit.co/videos/preview/mixkit-girl-walking-in-a-field-of-yellow-flowers-34440-large.mp4"
+                    loop muted playsinline></video>
+                <h3>Best Flower Sellers</h3>
+            </div>
+
+            <div class="content">
+                <h3>Why Choose Us?</h3>
+                <p>We work directly with sustainable local growers to source premier stems daily, ensuring unmatched
+                    freshness, rich color saturation, and impressive longevity for every design.</p>
+                <p>Our dedicated florists personally inspect and hand-arrange each bouquet in boutique biodegradable
+                    packaging, blending traditional techniques with contemporary styles.</p>
+                <a href="#contact" class="btn">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Grid (Directly beneath About Us) -->
+    <section class="icons-container">
+        <div class="icons-card">
+            <i class="fas fa-shipping-fast"></i>
+            <div class="info">
+                <h3>Free Shipping</h3>
+                <span>On All Orders</span>
+            </div>
+        </div>
+
+        <div class="icons-card">
+            <i class="fas fa-undo"></i>
+            <div class="info">
+                <h3>10 Days Returns</h3>
+                <span>Moneyback Guarantee</span>
+            </div>
+        </div>
+
+        <div class="icons-card">
+            <i class="fas fa-gift"></i>
+            <div class="info">
+                <h3>Offer &amp; Gifts</h3>
+                <span>On All Orders</span>
+            </div>
+        </div>
+
+        <div class="icons-card">
+            <i class="fas fa-wallet"></i>
+            <div class="info">
+                <h3>Secure Payment</h3>
+                <span>Protected by PayPal</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Products Grid -->
+    <section class="products" id="products">
+        <h2 class="heading">Latest <span>Products</span></h2>
+
+        <div class="box-container">
+            <!-- Product Card 1 -->
+            <div class="box" data-id="1" data-name="Pink Rose Pot" data-price="15.99"
+                data-img="https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?auto=format&fit=crop&q=80&w=800">
+                <span class="discount">-10%</span>
+                <div class="image">
+                    <img src="https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?auto=format&fit=crop&q=80&w=800"
+                        alt="Pink Rose Pot">
+                    <div class="icons">
+                        <a href="#" class="far fa-heart wishlist-toggle-btn" aria-label="Add to Wishlist"></a>
+                        <a href="#products" class="cart-btn add-to-cart-trigger">Add to Cart</a>
+                        <a href="#" class="fas fa-share share-btn" aria-label="Share"></a>
+                    </div>
+                </div>
+                <div class="content">
+                    <h3>Pink Rose Pot</h3>
+                    <div class="price">$15.99 <span>$18.99</span></div>
+                </div>
+            </div>
+
+            <!-- Product Card 2 -->
+            <div class="box" data-id="2" data-name="Sunflowers Vase" data-price="12.99"
+                data-img="https://images.unsplash.com/photo-1595855759920-86582396756a?auto=format&fit=crop&q=80&w=800">
+                <span class="discount">-15%</span>
+                <div class="image">
+                    <img src="https://images.unsplash.com/photo-1595855759920-86582396756a?auto=format&fit=crop&q=80&w=800"
+                        alt="Sunflowers Vase">
+                    <div class="icons">
+                        <a href="#" class="far fa-heart wishlist-toggle-btn" aria-label="Add to Wishlist"></a>
+                        <a href="#products" class="cart-btn add-to-cart-trigger">Add to Cart</a>
+                        <a href="#" class="fas fa-share share-btn" aria-label="Share"></a>
+                    </div>
+                </div>
+                <div class="content">
+                    <h3>Sunflowers Vase</h3>
+                    <div class="price">$12.99 <span>$15.99</span></div>
+                </div>
+            </div>
+
+            <!-- Product Card 3 -->
+            <div class="box" data-id="3" data-name="Serene White Lilies" data-price="17.99"
+                data-img="https://images.unsplash.com/photo-1508784932217-4970d417fe9f?auto=format&fit=crop&q=80&w=800">
+                <span class="discount">-5%</span>
+                <div class="image">
+                    <img src="https://images.unsplash.com/photo-1508784932217-4970d417fe9f?auto=format&fit=crop&q=80&w=800"
+                        alt="Serene White Lilies">
+                    <div class="icons">
+                        <a href="#" class="far fa-heart wishlist-toggle-btn" aria-label="Add to Wishlist"></a>
+                        <a href="#products" class="cart-btn add-to-cart-trigger">Add to Cart</a>
+                        <a href="#" class="fas fa-share share-btn" aria-label="Share"></a>
+                    </div>
+                </div>
+                <div class="content">
+                    <h3>Serene White Lilies</h3>
+                    <div class="price">$17.99 <span>$19.99</span></div>
+                </div>
+            </div>
+
+            <!-- Product Card 4 -->
+            <div class="box" data-id="4" data-name="Pastel Tulips Jar" data-price="11.99"
+                data-img="https://images.unsplash.com/photo-1520763185298-1b434c919102?auto=format&fit=crop&q=80&w=800">
+                <span class="discount">-18%</span>
+                <div class="image">
+                    <img src="https://images.unsplash.com/photo-1520763185298-1b434c919102?auto=format&fit=crop&q=80&w=800"
+                        alt="Pastel Tulips Jar">
+                    <div class="icons">
+                        <a href="#" class="far fa-heart wishlist-toggle-btn" aria-label="Add to Wishlist"></a>
+                        <a href="#products" class="cart-btn add-to-cart-trigger">Add to Cart</a>
+                        <a href="#" class="fas fa-share share-btn" aria-label="Share"></a>
+                    </div>
+                </div>
+                <div class="content">
+                    <h3>Pastel Tulips Jar</h3>
+                    <div class="price">$11.99 <span>$14.99</span></div>
+                </div>
+            </div>
+
+            <!-- Product Card 5 -->
+            <div class="box" data-id="5" data-name="Orchid Bloom Vase" data-price="19.99"
+                data-img="https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?auto=format&fit=crop&q=80&w=800">
+                <span class="discount">-20%</span>
+                <div class="image">
+                    <img src="https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?auto=format&fit=crop&q=80&w=800"
+                        alt="Orchid Bloom Vase">
+                    <div class="icons">
+                        <a href="#" class="far fa-heart wishlist-toggle-btn" aria-label="Add to Wishlist"></a>
+                        <a href="#products" class="cart-btn add-to-cart-trigger">Add to Cart</a>
+                        <a href="#" class="fas fa-share share-btn" aria-label="Share"></a>
+                    </div>
+                </div>
+                <div class="content">
+                    <h3>Orchid Bloom Vase</h3>
+                    <div class="price">$19.99 <span>$24.99</span></div>
+                </div>
+            </div>
+
+            <!-- Product Card 6 -->
+            <div class="box" data-id="6" data-name="Lavender Bundle" data-price="13.99"
+                data-img="https://images.unsplash.com/photo-1528183429752-a97d0bf99b5a?auto=format&fit=crop&q=80&w=800">
+                <span class="discount">-12%</span>
+                <div class="image">
+                    <img src="https://images.unsplash.com/photo-1528183429752-a97d0bf99b5a?auto=format&fit=crop&q=80&w=800"
+                        alt="Lavender Bundle">
+                    <div class="icons">
+                        <a href="#" class="far fa-heart wishlist-toggle-btn" aria-label="Add to Wishlist"></a>
+                        <a href="#products" class="cart-btn add-to-cart-trigger">Add to Cart</a>
+                        <a href="#" class="fas fa-share share-btn" aria-label="Share"></a>
+                    </div>
+                </div>
+                <div class="content">
+                    <h3>Lavender Bundle</h3>
+                    <div class="price">$13.99 <span>$15.99</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Reviews Layout -->
+    <section class="reviews" id="reviews">
+        <h2 class="heading">Customer's <span>Review</span></h2>
+
+        <div class="box-container">
+            <!-- Testimonial 1 -->
+            <div class="box">
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p>The tulips arrived in immaculate condition, fully hydrated and wrapped with great care. It has
+                    completely redefined how I shop for household floral designs.</p>
+                <div class="user">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150"
+                        alt="Eleanor Vance">
+                    <div class="user-info">
+                        <h3>Eleanor Vance</h3>
+                        <span>Happy Customer</span>
+                    </div>
+                </div>
+                <span class="fas fa-quote-right quote-icon"></span>
+            </div>
+
+            <!-- Testimonial 2 -->
+            <div class="box">
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p>Unmatched client services! They quickly adapted to my last-minute address change with absolute
+                    professionalism. The roses look vibrant and beautiful.</p>
+                <div class="user">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150"
+                        alt="Marcus Thornton">
+                    <div class="user-info">
+                        <h3>Marcus Thornton</h3>
+                        <span>Happy Customer</span>
+                    </div>
+                </div>
+                <span class="fas fa-quote-right quote-icon"></span>
+            </div>
+
+            <!-- Testimonial 3 -->
+            <div class="box">
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p>Highly recommend the orchid arrangement. It is modern, elegant, and continues to bloom in our dining
+                    room three weeks later. Superb farm-to-door quality.</p>
+                <div class="user">
+                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=150"
+                        alt="Sophia Lin">
+                    <div class="user-info">
+                        <h3>Sophia Lin</h3>
+                        <span>Happy Customer</span>
+                    </div>
+                </div>
+                <span class="fas fa-quote-right quote-icon"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Contact Section -->
+    <section class="contact" id="contact">
+        <h2 class="heading"><span>Contact</span> Us</h2>
+
+        <div class="row">
+            <!-- Form Left -->
+            <form id="contactForm">
+                <input type="text" placeholder="Name" class="box" id="formName" required>
+                <input type="email" placeholder="Email" class="box" id="formEmail" required>
+                <input type="number" placeholder="Number" class="box" id="formNumber">
+                <textarea placeholder="Message" class="box" id="formMessage" cols="30" rows="10" required></textarea>
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+
+            <!-- Illustration Right -->
+            <div class="image">
+                <!-- Clean, stylized inline floral SVG illustration corresponding to the girl watering plants -->
+                <svg viewBox="0 0 500 500" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="100%" height="100%" fill="none" />
+                    <!-- Flower Pot -->
+                    <path d="M120 400 L380 400 L350 480 L150 480 Z" fill="#4E6E5D" opacity="0.15" />
+                    <path d="M140 410 L360 410 L340 470 L160 470 Z" fill="#e84393" opacity="0.1" />
+                    <!-- Leafy Stem -->
+                    <path d="M250 420 Q220 300 240 180 Q260 300 250 420" fill="#4E6E5D" opacity="0.8" />
+                    <!-- Plant Leaves -->
+                    <path d="M245 350 Q160 300 130 350 Q200 380 245 350" fill="#4E6E5D" opacity="0.7" />
+                    <path d="M255 310 Q340 260 370 310 Q300 340 255 310" fill="#4E6E5D" opacity="0.7" />
+                    <path d="M245 250 Q180 200 150 250 Q210 280 245 250" fill="#4E6E5D" opacity="0.7" />
+                    <!-- Main Big Bloom -->
+                    <circle cx="250" cy="160" r="50" fill="#ffe5e5" stroke="#e84393" stroke-width="4" />
+                    <circle cx="250" cy="160" r="25" fill="#e84393" />
+                    <!-- Petals -->
+                    <path d="M250 110 C230 70 270 70 250 110" fill="#e84393" opacity="0.4" stroke="#e84393"
+                        stroke-width="2" />
+                    <path d="M250 210 C230 250 270 250 250 210" fill="#e84393" opacity="0.4" stroke="#e84393"
+                        stroke-width="2" />
+                    <path d="M200 160 C160 140 160 180 200 160" fill="#e84393" opacity="0.4" stroke="#e84393"
+                        stroke-width="2" />
+                    <path d="M300 160 C340 140 340 180 300 160" fill="#e84393" opacity="0.4" stroke="#e84393"
+                        stroke-width="2" />
+                    <!-- Watering can path visual placeholder -->
+                    <path d="M420 200 L440 240 L380 240 Z" fill="#D4A373" opacity="0.8" />
+                    <path d="M390 230 L350 200" stroke="#D4A373" stroke-width="6" stroke-linecap="round" />
+                    <path d="M340 200 C320 230 300 250 280 270" stroke="#e84393" stroke-width="3" stroke-dasharray="5,5"
+                        fill="none" />
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Footer -->
+    <footer class="footer">
+        <div class="box-container">
+            <div class="box">
+                <h3>Quick Links</h3>
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#products">Products</a>
+                <a href="#reviews">Review</a>
+                <a href="#contact">Contact</a>
+            </div>
+
+            <div class="box">
+                <h3>Extra Links</h3>
+                <a href="#">My Account</a>
+                <a href="#">My Order</a>
+                <a href="#">My Favorite</a>
+            </div>
+
+            <div class="box">
+                <h3>Locations</h3>
+                <a href="#">India</a>
+                <a href="#">USA</a>
+                <a href="#">Japan</a>
+                <a href="#">France</a>
+            </div>
+
+            <div class="box">
+                <h3>Contact Info</h3>
+                <a href="tel:+11234567890">+11234567890</a>
+                <a href="mailto:inquiries@fioreboutique.com">inquiries@fioreboutique.com</a>
+                <a href="#">Mumbai, India - 400104</a>
+                <!-- Payment Logos Mock -->
+                <div class="payment-icons">
+                    <i class="fab fa-cc-paypal"></i>
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-amex"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="credit">
+            Created by <span>Fiore Boutique</span> | All Rights Reserved
+        </div>
+    </footer>
+
+    <!-- App JavaScript Logic -->
+    <script>
+        // Programmatic Autoplay for HTML5 video (satisfies VS Code linter warnings)
+        const aboutVideo = document.getElementById('about-video');
+        if (aboutVideo) {
+            aboutVideo.play().catch(error => {
+                console.log('Video autoplay programmatically initialized safely:', error);
+            });
+        }
+
+        // --- Application State ---
+        let appState = {
+            cart: [],
+            wishlist: []
+        };
+
+        // --- DOM Elements ---
+        const cartIconBtn = document.getElementById('cartIconBtn');
+        const closeCart = document.getElementById('closeCart');
+        const cartSidebar = document.getElementById('cartSidebar');
+        const cartOverlay = document.getElementById('cartOverlay');
+        const cartItemsList = document.getElementById('cartItemsList');
+        const cartTotalVal = document.getElementById('cartTotalVal');
+        const cartBadge = document.getElementById('cartBadge');
+        const wishlistBadge = document.getElementById('wishlistBadge');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        const productSearchInput = document.getElementById('productSearchInput');
+        const contactForm = document.getElementById('contactForm');
+        const toastContainer = document.getElementById('toastContainer');
+
+        // --- Toast Notification System ---
+        function showNotification(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `<i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-info-circle'}"></i> <span>${message}</span>`;
+            toastContainer.appendChild(toast);
+
+            // Automatically clean up toast DOM after animation completes
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+
+        // --- Cart Utility Operations ---
+        function toggleCart() {
+            cartSidebar.classList.toggle('active');
+            cartOverlay.classList.toggle('active');
+        }
+
+        function updateCartUI() {
+            // Render cart count badge
+            const totalCount = appState.cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartBadge.textContent = totalCount;
+
+            // Render list items inside side panel
+            if (appState.cart.length === 0) {
+                cartItemsList.innerHTML = '<div class="empty-cart-msg">Your cart is currently empty.</div>';
+                cartTotalVal.textContent = '$0.00';
+                return;
+            }
+
+            let cartHTML = '';
+            let totalAmount = 0;
+
+            appState.cart.forEach(item => {
+                const subtotal = item.price * item.quantity;
+                totalAmount += subtotal;
+                cartHTML += `
+                    <div class="cart-item">
+                        <img src="${item.img}" alt="${item.name}">
+                        <div class="item-details">
+                            <h4>${item.name}</h4>
+                            <p class="item-price">$${item.price.toFixed(2)}</p>
+                            <div class="quantity-controls">
+                                <button onclick="changeQuantity(${item.id}, -1)">-</button>
+                                <span>${item.quantity}</span>
+                                <button onclick="changeQuantity(${item.id}, 1)">+</button>
+                            </div>
+                        </div>
+                        <i class="fas fa-trash remove-item-btn" onclick="removeFromCart(${item.id})"></i>
+                    </div>
+                `;
+            });
+
+            cartItemsList.innerHTML = cartHTML;
+            cartTotalVal.textContent = `$${totalAmount.toFixed(2)}`;
+        }
+
+        window.changeQuantity = function (productId, direction) {
+            const item = appState.cart.find(i => i.id === productId);
+            if (item) {
+                item.quantity += direction;
+                if (item.quantity <= 0) {
+                    removeFromCart(productId);
+                } else {
+                    updateCartUI();
+                }
+            }
+        }
+
+        window.removeFromCart = function (productId) {
+            const itemIndex = appState.cart.findIndex(i => i.id === productId);
+            if (itemIndex > -1) {
+                const name = appState.cart[itemIndex].name;
+                appState.cart.splice(itemIndex, 1);
+                updateCartUI();
+                showNotification(`Removed "${name}" from cart`, 'info');
+            }
+        }
+
+        // --- Core Events Hook-up ---
+        cartIconBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleCart();
+        });
+
+        closeCart.addEventListener('click', toggleCart);
+        cartOverlay.addEventListener('click', toggleCart);
+
+        // Add to Cart Button Logic
+        document.querySelectorAll('.add-to-cart-trigger').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const productBox = btn.closest('.box');
+                const id = parseInt(productBox.dataset.id);
+                const name = productBox.dataset.name;
+                const price = parseFloat(productBox.dataset.price);
+                const img = productBox.dataset.img;
+
+                // Check if already in cart
+                const existingItem = appState.cart.find(item => item.id === id);
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    appState.cart.push({ id, name, price, img, quantity: 1 });
+                }
+
+                updateCartUI();
+                showNotification(`Added "${name}" to shopping cart!`);
+            });
+        });
+
+        // Wishlist Toggle Logic
+        document.querySelectorAll('.wishlist-toggle-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const productBox = btn.closest('.box');
+                const id = parseInt(productBox.dataset.id);
+                const name = productBox.dataset.name;
+
+                btn.classList.toggle('far');
+                btn.classList.toggle('fas');
+                btn.classList.toggle('active-heart');
+
+                const isAdded = btn.classList.contains('active-heart');
+                if (isAdded) {
+                    appState.wishlist.push(id);
+                    showNotification(`Saved "${name}" to your wishlist!`);
+                } else {
+                    appState.wishlist = appState.wishlist.filter(item => item !== id);
+                    showNotification(`Removed "${name}" from wishlist`, 'info');
+                }
+
+                wishlistBadge.textContent = appState.wishlist.length;
+            });
+        });
+
+        // Checkout Trigger
+        checkoutBtn.addEventListener('click', () => {
+            if (appState.cart.length === 0) {
+                showNotification('Your cart is empty. Add items before checking out.', 'info');
+                return;
+            }
+            showNotification('Checkout Successful! Thank you for ordering from Fiore Boutique.');
+            appState.cart = [];
+            updateCartUI();
+            toggleCart();
+        });
+
+        // Product Live Search Filter
+        productSearchInput.addEventListener('keyup', (e) => {
+            const query = e.target.value.toLowerCase();
+            const products = document.querySelectorAll('.products .box-container .box');
+
+            products.forEach(product => {
+                const productName = product.dataset.name.toLowerCase();
+                if (productName.includes(query)) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        });
+
+        // Interactive Contact Form Handling
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('formName').value;
+            showNotification(`Thank you, ${name}! Your message was sent successfully.`);
+            contactForm.reset();
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,910 @@
+/* ==========================================================================
+   CSS Custom Properties & Global Variables
+   ========================================================================== */
+:root {
+    --pink: #e84393;
+    --light-pink: #ffe5e5;
+    --dark-pink: #d63031;
+    --text-charcoal: #333333;
+    --text-muted: #666666;
+    --white: #FFFFFF;
+    --bg-light: #FAFAFA;
+    --box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, .05);
+    --border: .1rem solid rgba(0, 0, 0, .1);
+    --transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* ==========================================================================
+   Base Resets & Setup
+   ========================================================================== */
+* {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+html {
+    font-size: 62.5%; /* 1rem = 10px */
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scroll-padding-top: 7rem;
+}
+
+body {
+    background-color: var(--bg-light);
+    color: var(--text-charcoal);
+    line-height: 1.6;
+}
+
+section {
+    padding: 3rem 9%;
+}
+
+img, video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ==========================================================================
+   Reusable UI Elements
+   ========================================================================== */
+.btn {
+    display: inline-block;
+    margin-top: 1rem;
+    border-radius: 5rem;
+    background-color: var(--text-charcoal);
+    color: var(--white);
+    padding: .9rem 3.5rem;
+    cursor: pointer;
+    font-size: 1.6rem;
+    font-weight: 500;
+    text-align: center;
+    border: .1rem solid transparent;
+}
+
+.btn:hover {
+    background-color: var(--pink);
+    border-color: var(--pink);
+}
+
+.heading {
+    text-align: center;
+    font-size: 3.6rem;
+    color: var(--text-charcoal);
+    padding: 1.5rem;
+    margin-bottom: 3rem;
+    background: rgba(232, 67, 147, .03);
+    border-radius: .5rem;
+}
+
+.heading span {
+    color: var(--pink);
+}
+
+/* ==========================================================================
+   1. Navigation Header Section
+   ========================================================================== */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--white);
+    padding: 1.5rem 9%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    box-shadow: var(--box-shadow);
+}
+
+.site-header .logo {
+    font-size: 2.8rem;
+    color: var(--text-charcoal);
+    font-weight: 800;
+}
+
+.site-header .logo span {
+    color: var(--pink);
+}
+
+.site-header .navbar a {
+    font-size: 1.8rem;
+    padding: 0 1.5rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.site-header .navbar a:hover {
+    color: var(--pink);
+}
+
+.search-bar-container {
+    position: relative;
+    max-width: 25rem;
+    width: 100%;
+    margin: 0 1.5rem;
+}
+
+.search-bar-container input {
+    width: 100%;
+    padding: .8rem 3.5rem .8rem 1.5rem;
+    font-size: 1.4rem;
+    border: var(--border);
+    border-radius: 5rem;
+    background: #f7f7f7;
+}
+
+.search-bar-container input:focus {
+    background: var(--white);
+    border-color: var(--pink);
+}
+
+.search-bar-container i {
+    position: absolute;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    color: var(--text-muted);
+}
+
+.site-header .icons {
+    display: flex;
+    align-items: center;
+}
+
+.site-header .icons a {
+    font-size: 2.2rem;
+    color: var(--text-charcoal);
+    margin-left: 1.8rem;
+    position: relative;
+}
+
+.site-header .icons a:hover {
+    color: var(--pink);
+}
+
+/* Interactive Badge Styling */
+.site-header .icons a .badge {
+    position: absolute;
+    top: -.8rem;
+    right: -1rem;
+    background: var(--pink);
+    color: var(--white);
+    font-size: 1.1rem;
+    font-weight: 600;
+    width: 1.8rem;
+    height: 1.8rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: .2rem solid var(--white);
+}
+
+/* Checkbox Toggle Hack (No JS Required for mobile layout) */
+.site-header #toggler {
+    display: none;
+}
+
+.site-header .mobile-toggle-btn {
+    font-size: 2.5rem;
+    color: var(--text-charcoal);
+    border-radius: .5rem;
+    padding: .5rem 1.2rem;
+    cursor: pointer;
+    border: var(--border);
+    display: none;
+}
+
+/* ==========================================================================
+   Interactive App Cart Sidebar Drawer Panel & Overlay
+   ========================================================================== */
+.cart-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1500;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.cart-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 38rem;
+    height: 100%;
+    background-color: var(--white);
+    box-shadow: -5px 0 15px rgba(0,0,0,0.05);
+    z-index: 2000;
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-sidebar.active {
+    transform: translateX(0);
+}
+
+.cart-header {
+    padding: 2rem;
+    border-bottom: var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cart-header h3 {
+    font-size: 2rem;
+    color: var(--text-charcoal);
+}
+
+.cart-header i {
+    font-size: 2.2rem;
+    color: var(--text-charcoal);
+    cursor: pointer;
+}
+
+.cart-header i:hover {
+    color: var(--pink);
+}
+
+.cart-items {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 1.5rem;
+}
+
+.empty-cart-msg {
+    font-size: 1.6rem;
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 5rem;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    border-bottom: .1rem solid #eee;
+}
+
+.cart-item img {
+    height: 7rem;
+    width: 7rem;
+    border-radius: .5rem;
+    object-fit: cover;
+}
+
+.cart-item .item-details {
+    flex-grow: 1;
+}
+
+.cart-item .item-details h4 {
+    font-size: 1.6rem;
+    color: var(--text-charcoal);
+    margin-bottom: .3rem;
+}
+
+.cart-item .item-details .item-price {
+    font-size: 1.4rem;
+    color: var(--pink);
+    font-weight: 600;
+    margin-bottom: .8rem;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.quantity-controls button {
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 50%;
+    background: #f1f1f1;
+    font-size: 1.4rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.quantity-controls button:hover {
+    background: var(--pink);
+    color: var(--white);
+}
+
+.quantity-controls span {
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
+.remove-item-btn {
+    font-size: 1.6rem;
+    color: var(--text-muted);
+    cursor: pointer;
+}
+
+.remove-item-btn:hover {
+    color: var(--dark-pink);
+}
+
+.cart-footer {
+    padding: 2rem;
+    border-top: var(--border);
+    background: #fafafa;
+}
+
+.cart-footer .total-price-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--text-charcoal);
+    margin-bottom: 1.5rem;
+}
+
+.cart-footer .total-price-row #cartTotalVal {
+    color: var(--pink);
+}
+
+.checkout-btn {
+    width: 100%;
+    margin-top: 0;
+}
+
+/* ==========================================================================
+   Custom App Toast Notification System
+   ========================================================================== */
+.toast-container {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 3000;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 32rem;
+    width: 100%;
+}
+
+.toast {
+    background: var(--text-charcoal);
+    color: var(--white);
+    padding: 1.5rem 2rem;
+    font-size: 1.35rem;
+    border-radius: .5rem;
+    box-shadow: 0 .5rem 1.5rem rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    border-left: .5rem solid var(--pink);
+    animation: slideInToast 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) forwards, 
+               fadeOutToast 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) 2.7s forwards;
+}
+
+.toast.info {
+    border-left-color: var(--text-muted);
+}
+
+@keyframes slideInToast {
+    from { transform: translateX(120%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fadeOutToast {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(120%); opacity: 0; }
+}
+
+/* ==========================================================================
+   2. Home Hero Banner
+   ========================================================================== */
+.home {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(rgba(255,255,255,0.45), rgba(255,255,255,0.45)), 
+                url('https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&q=80&w=1600') no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.home .content {
+    max-width: 55rem;
+    padding: 2rem;
+}
+
+.home .content h3 {
+    font-size: 5.5rem;
+    color: var(--text-charcoal);
+    line-height: 1.2;
+}
+
+.home .content span {
+    font-size: 3rem;
+    color: var(--pink);
+    padding: 1rem 0;
+    font-weight: 600;
+    display: block;
+}
+
+.home .content p {
+    font-size: 1.6rem;
+    color: var(--text-muted);
+    padding: 1rem 0;
+}
+
+/* ==========================================================================
+   3. About Us Section & Features Grid
+   ========================================================================== */
+.about .row {
+    display: flex;
+    align-items: center;
+    gap: 3.5rem;
+    flex-wrap: wrap;
+    padding: 2rem 0;
+}
+
+.about .row .video-container {
+    flex: 1 1 40rem;
+    position: relative;
+    border-radius: .5rem;
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+    border: 1.5rem solid var(--white);
+}
+
+.about .row .video-container video {
+    width: 100%;
+    height: 35rem;
+    object-fit: cover;
+}
+
+.about .row .video-container h3 {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2.8rem;
+    color: var(--text-charcoal);
+    background: var(--white);
+    width: 100%;
+    padding: 1rem 2rem;
+    text-align: center;
+    mix-blend-mode: screen;
+    font-weight: 700;
+}
+
+.about .row .content {
+    flex: 1 1 40rem;
+}
+
+.about .row .content h3 {
+    font-size: 3.2rem;
+    color: var(--text-charcoal);
+}
+
+.about .row .content p {
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    padding-top: 1.5rem;
+}
+
+/* Features icons banner (CSS Grid for exact auto-flow resizing) */
+.icons-container {
+    background: #eeeeee;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
+    gap: 2rem;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+.icons-container .icons-card {
+    background: var(--white);
+    border: var(--border);
+    padding: 2.5rem 2rem;
+    display: flex;
+    align-items: center;
+    border-radius: .5rem;
+}
+
+.icons-container .icons-card i {
+    font-size: 4.5rem;
+    color: var(--pink);
+    margin-right: 2rem;
+}
+
+.icons-container .icons-card h3 {
+    font-size: 1.8rem;
+    color: var(--text-charcoal);
+    padding-bottom: .3rem;
+}
+
+.icons-container .icons-card span {
+    font-size: 1.3rem;
+    color: var(--text-muted);
+}
+
+/* ==========================================================================
+   4. Products Grid Section (Infinitely Fluid Auto-Fit Columns)
+   ========================================================================== */
+.products .box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
+    gap: 2rem;
+}
+
+.products .box-container .box {
+    box-shadow: var(--box-shadow);
+    border-radius: .5rem;
+    border: var(--border);
+    position: relative;
+    background: var(--white);
+    overflow: hidden;
+}
+
+.products .box-container .box .discount {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    padding: .5rem 1rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--pink);
+    background: rgba(232, 67, 147, .08);
+    z-index: 10;
+    border-radius: .5rem;
+}
+
+.products .box-container .box .image {
+    position: relative;
+    text-align: center;
+    padding-top: 1rem;
+    overflow: hidden;
+    height: 32rem;
+}
+
+.products .box-container .box .image img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.products .box-container .box:hover .image img {
+    transform: scale(1.08);
+}
+
+.products .box-container .box .image .icons {
+    position: absolute;
+    bottom: -8rem;
+    left: 0;
+    right: 0;
+    display: flex;
+}
+
+.products .box-container .box:hover .image .icons {
+    bottom: 0;
+}
+
+.products .box-container .box .image .icons a {
+    height: 5rem;
+    line-height: 5rem;
+    font-size: 1.8rem;
+    width: 50%;
+    background: var(--pink);
+    color: var(--white);
+    text-align: center;
+}
+
+.products .box-container .box .image .icons .cart-btn {
+    border-left: .1rem solid rgba(255, 255, 255, .2);
+    border-right: .1rem solid rgba(255, 255, 255, .2);
+    width: 100%;
+    font-weight: 500;
+}
+
+.products .box-container .box .image .icons a:hover {
+    background: var(--text-charcoal);
+}
+
+/* Highlight style when heart wishlist icon is active */
+.products .box-container .box .image .icons .wishlist-toggle-btn.active-heart {
+    color: #df2020;
+}
+
+.products .box-container .box .content {
+    padding: 2rem;
+    text-align: center;
+}
+
+.products .box-container .box .content h3 {
+    font-size: 2.2rem;
+    color: var(--text-charcoal);
+}
+
+.products .box-container .box .content .price {
+    font-size: 2.2rem;
+    color: var(--pink);
+    font-weight: 700;
+    padding-top: .8rem;
+}
+
+.products .box-container .box .content .price span {
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    font-weight: 400;
+    text-decoration: line-through;
+    margin-left: .8rem;
+}
+
+/* ==========================================================================
+   5. Reviews Section (Fluid Adaptive Card Wrapping)
+   ========================================================================== */
+.reviews .box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
+    gap: 2.5rem;
+}
+
+.reviews .box-container .box {
+    box-shadow: var(--box-shadow);
+    border-radius: .5rem;
+    border: var(--border);
+    padding: 3rem 2.5rem;
+    position: relative;
+    background: var(--white);
+}
+
+.reviews .box-container .box .stars i {
+    color: var(--pink);
+    font-size: 1.8rem;
+}
+
+.reviews .box-container .box p {
+    font-size: 1.45rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    padding: 2rem 0;
+}
+
+.reviews .box-container .box .user {
+    display: flex;
+    align-items: center;
+}
+
+.reviews .box-container .box .user img {
+    height: 5.5rem;
+    width: 5.5rem;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 1.5rem;
+}
+
+.reviews .box-container .box .user h3 {
+    font-size: 1.8rem;
+    color: var(--text-charcoal);
+}
+
+.reviews .box-container .box .user span {
+    font-size: 1.3rem;
+    color: var(--text-muted);
+}
+
+.reviews .box-container .box .quote-icon {
+    position: absolute;
+    bottom: 3rem;
+    right: 3rem;
+    font-size: 5rem;
+    color: rgba(0, 0, 0, 0.05);
+}
+
+/* ==========================================================================
+   6. Contact Form Section
+   ========================================================================== */
+.contact .row {
+    display: flex;
+    flex-wrap: wrap-reverse;
+    gap: 3rem;
+    align-items: center;
+}
+
+.contact .row form {
+    flex: 1 1 40rem;
+    padding: 3rem;
+    box-shadow: var(--box-shadow);
+    border: var(--border);
+    background: var(--white);
+    border-radius: .5rem;
+}
+
+.contact .row form .box {
+    width: 100%;
+    padding: 1.2rem;
+    font-size: 1.6rem;
+    color: var(--text-charcoal);
+    border: var(--border);
+    border-radius: .5rem;
+    margin: .8rem 0;
+}
+
+.contact .row form .box:focus {
+    border-color: var(--pink);
+}
+
+.contact .row form textarea {
+    height: 15rem;
+    resize: none;
+}
+
+.contact .row .image {
+    flex: 1 1 40rem;
+    padding: 1rem;
+}
+
+/* ==========================================================================
+   7. Footer Section
+   ========================================================================== */
+.footer {
+    background-color: var(--white);
+    border-top: var(--border);
+}
+
+.footer .box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
+    gap: 3rem;
+}
+
+.footer .box-container .box h3 {
+    color: var(--text-charcoal);
+    font-size: 2.2rem;
+    padding: 1rem 0;
+}
+
+.footer .box-container .box a {
+    display: block;
+    color: var(--text-muted);
+    font-size: 1.5rem;
+    padding: .8rem 0;
+}
+
+.footer .box-container .box a:hover {
+    color: var(--pink);
+    padding-left: .5rem;
+}
+
+.footer .box-container .box .payment-icons {
+    margin-top: 1.2rem;
+    font-size: 2.8rem;
+    color: var(--pink);
+    display: flex;
+    gap: 1.2rem;
+}
+
+.footer .credit {
+    text-align: center;
+    padding: 2.5rem 1rem;
+    margin-top: 2rem;
+    font-size: 1.8rem;
+    color: var(--text-charcoal);
+    border-top: .1rem solid rgba(0, 0, 0, .05);
+}
+
+.footer .credit span {
+    color: var(--pink);
+}
+
+/* ==========================================================================
+   Responsive Breakpoints & Layout Adapters
+   ========================================================================== */
+
+/* Laptops & Standard Desktops (< 1200px) */
+@media (max-width: 1200px) {
+    section {
+        padding: 3rem 5%;
+    }
+}
+
+/* Tablet Layouts (< 991px) */
+@media (max-width: 991px) {
+    html {
+        font-size: 55%; /* Scales overall scaling factor */
+    }
+
+    .site-header {
+        padding: 1.5rem 5%;
+    }
+
+    section {
+        padding: 2.5rem 5%;
+    }
+
+    .home {
+        background-position: left;
+    }
+}
+
+/* Mobile Toggler Navigation Trigger (< 768px) */
+@media (max-width: 768px) {
+    .site-header .mobile-toggle-btn {
+        display: block; /* Reveals hamburger icon */
+    }
+
+    /* Transition layout to absolute overlay dropdown when toggler check is active */
+    .site-header .navbar {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        border-top: .1rem solid rgba(0, 0, 0, .08);
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0); /* Collapsed */
+    }
+
+    .site-header #toggler:checked ~ .navbar {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); /* Expanded */
+    }
+
+    .site-header .navbar a {
+        margin: 1.2rem;
+        padding: 1.2rem;
+        background: #f7f7f7;
+        border: var(--border);
+        border-radius: .5rem;
+        display: block;
+        font-size: 1.8rem;
+        font-weight: 500;
+    }
+
+    .search-bar-container {
+        max-width: 18rem;
+        margin: 0 .8rem;
+    }
+
+    .cart-sidebar {
+        width: 100%; /* Cart goes full width on smaller mobile devices */
+    }
+
+    .about .row .video-container h3 {
+        font-size: 2.2rem;
+    }
+}
+
+/* Compact Mobile Devices (< 450px) */
+@media (max-width: 450px) {
+    html {
+        font-size: 50%; /* Scales relative units further down on small viewports */
+    }
+
+    .home .content h3 {
+        font-size: 3.8rem;
+    }
+
+    .home .content span {
+        font-size: 2.2rem;
+    }
+
+    .about .row .video-container {
+        border-width: .5rem; /* Reduces white borders around video frame */
+    }
+}

@@ -1,0 +1,1 @@
+"A responsive e-commerce storefront for 'Fiore Boutique' featuring a functional side-drawer cart, dynamic subtotal calculations, wishlist toggling, live search filtering, and custom toast notifications."
